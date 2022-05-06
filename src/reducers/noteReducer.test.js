@@ -5,7 +5,7 @@ describe('noteReducer', () => {
   test('returns new state with action NEW_NOTE', () => {
     const state = [];
     const action = {
-      type: 'NEW_NOTE',
+      type: 'notes/createNote',
       data: {
         content: 'the app state is in the redux store',
         important: true,
@@ -17,7 +17,7 @@ describe('noteReducer', () => {
     const newState = noteReducer(state, action);
 
     expect(newState).toHaveLength(1);
-    expect(newState).toContainEqual(action.data);
+    expect(newState.map(s => s.content)).toContainEqual(action.payload);
   });
 
   test('returns new state with action TOGGLE_IMPORTANCE', () => {
@@ -34,10 +34,8 @@ describe('noteReducer', () => {
       }];
 
     const action = {
-      type: 'TOGGLE_IMPORTANCE',
-      data: {
-        id: 2,
-      },
+      type: 'notes/toggleImportanceOf',
+      payload: 2,
     };
 
     deepFreeze(state);
