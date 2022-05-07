@@ -7,8 +7,9 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 
-import noteReducer, { createNote } from './reducers/noteReducer';
+import noteReducer, { setNotes } from './reducers/noteReducer';
 import filterReducer, { filterChange } from './reducers/filterReducer';
+import noteService from './services/notes';
 
 const store = configureStore(
   {
@@ -19,9 +20,14 @@ const store = configureStore(
   },
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
+noteService.getAll()
+  .then(notes =>
+    store.dispatch(setNotes(notes))
+  );
+
 store.subscribe(() => console.log(store.getState()));
-store.dispatch(filterChange('IMPORTANT'));
-store.dispatch(createNote('combineReducers forms one reducer from many simple reducers'));
+// store.dispatch(filterChange('IMPORTANT'));
+// store.dispatch(createNote('combineReducers forms one reducer from many simple reducers'));
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
