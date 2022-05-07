@@ -24,6 +24,11 @@
       "content": "Testing extracted add",
       "important": false,
       "id": 5
+    },
+    {
+      "content": "Adding with connect",
+      "important": false,
+      "id": 6
     }
   ]
 }
