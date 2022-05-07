@@ -19,6 +19,11 @@
       "content": "adding?!",
       "important": false,
       "id": 4
+    },
+    {
+      "content": "Testing extracted add",
+      "important": false,
+      "id": 5
     }
   ]
 }
